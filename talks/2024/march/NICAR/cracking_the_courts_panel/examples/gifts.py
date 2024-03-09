@@ -93,3 +93,17 @@ def query_gifts_to_scotus_judges():
         judge = f"{p['name_first']} {p['name_middle']} {p['name_last']}"
         print(judge.ljust(30), item['source'], item.get("location", ""),
               item.get("purpose", ""))
+
+def redacted_gifts():
+    """Redacted Gifts For Example
+    https://storage.courtlistener.com/us/federal/judicial/financial-disclosures/713/l-scott-coogler-disclosure.2015.pdf
+    """
+    session = make_session()
+    params = (("redacted", True),)
+
+    url = make_endpoint("gifts")
+    resp = session.get(url, params=params, timeout=15).json()
+    for row in resp['results']:
+        print("")
+        print(row['financial_disclosure'])
+        print(row['value'].ljust(10), (row['source'] if row['source'] else "x").ljust(50), row['description'])
