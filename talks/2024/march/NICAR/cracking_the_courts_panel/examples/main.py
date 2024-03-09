@@ -1,8 +1,8 @@
-# from gifts import *
-# from investments import *
-# from reimbursements import *
+from gifts import *
+from investments import *
+from reimbursements import *
 from scraper import *
-# from recap import *
+from recap import *
 
 if __name__ == '__main__':
     # pass
